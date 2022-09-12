@@ -38,6 +38,35 @@ export default function Login() {
     onSubmit: onSubmitForm,
   });
 
+  const formulario_campos = [
+    {
+      className: "mb-3",
+      controlId: "email",
+      onChange: formik.handleChange,
+      defaultValue: formik.values.email,
+      value: formik.values.email,
+      label: "Email",
+      type: "email",
+      placeholder: "Digite o email",
+      name: "email",
+      errors: formik.errors.email,
+      touched: formik.touched.email
+    },
+    {
+      className: "mb-3",
+      controlId: "senha",
+      onChange: formik.handleChange,
+      defaultValue: formik.values.senha,
+      value: formik.values.senha,
+      label: "Senha",
+      type: "password",
+      placeholder: "Digite a senha",
+      name: "senha",
+      errors: formik.errors.senha,
+      touched: formik.touched.senha
+    },
+  ];
+
   return (
     <Container
       className="d-flex justify-content-center pt-5"
@@ -49,42 +78,28 @@ export default function Login() {
         </Col>
         <Col xs={12}>
           <Form onSubmit={formik.handleSubmit}>
-            <Form.Group
-              className="mb-3"
-              controlId="email"
-              onChange={formik.handleChange}
-              defaultValue={formik.values.email}
-            >
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Digite o email"
-                name="email"
-              />
-              {formik.errors.email && formik.touched.email ? (
-                <Form.Text className="text-danger">
-                  {formik.errors.email}
-                </Form.Text>
-              ) : null}
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="senha"
-              onChange={formik.handleChange}
-              defaultValue={formik.values.senha}
-            >
-              <Form.Label>Senha</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Digite a senha"
-                name="senha"
-              />
-              {formik.errors.senha && formik.touched.senha ? (
-                <Form.Text className="text-danger">
-                  {formik.errors.senha}
-                </Form.Text>
-              ) : null}
-            </Form.Group>
+            {formulario_campos.map((item, index) => (
+              <Form.Group
+                key={index}
+                className={item.className}
+                controlId={item.controlId}
+                onChange={item.onChange}
+                defaultValue={item.defaultValue}
+              >
+                <Form.Label>{item.label}</Form.Label>
+                <Form.Control
+                  type={item.type}
+                  placeholder={item.placeholder}
+                  name={item.name}
+                  value={item.value}
+                />
+                {item.errors && item.touched ? (
+                  <Form.Text className="text-danger">
+                    {item.errors}
+                  </Form.Text>
+                ) : null}
+              </Form.Group>
+            ))}
             <ButtonGroup className="w-100 mb-1">
               <Button
                 variant="primary"
