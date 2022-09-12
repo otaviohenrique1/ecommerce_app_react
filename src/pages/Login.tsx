@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button, ButtonGroup } from 'react-bootstrap'
 import * as yup from "yup";
 import { FormikHelpers, useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
+import { AiTwotoneShopping } from "react-icons/ai";
+import styled from "styled-components";
 
 const validationSchema = yup.object({
   email: yup
@@ -72,9 +74,13 @@ export default function Login() {
       className="d-flex justify-content-center pt-5"
       fluid
     >
-      <Row>
+      <RowStyled>
+        <Col xs={12} className="d-flex justify-content-center align-items-center mb-2">
+          <AiTwotoneShopping size={50} />
+          <LogoName className="text-center mb-0 ms-2">E-commerce App React</LogoName>
+        </Col>
         <Col xs={12}>
-          <h1 className="text-center">Login</h1>
+          <h1 className="text-center mb-5">Login</h1>
         </Col>
         <Col xs={12}>
           <Form onSubmit={formik.handleSubmit}>
@@ -117,7 +123,15 @@ export default function Login() {
             >Novo usuario</Link>
           </Form>
         </Col>
-      </Row>
+      </RowStyled>
     </Container>
   )
 }
+
+const LogoName = styled.p`
+  font-size: larger;
+`;
+
+const RowStyled = styled(Row)`
+  max-width: 600px;
+`;

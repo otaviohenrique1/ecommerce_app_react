@@ -260,12 +260,12 @@ export default function NovoUsuario() {
 
   return (
     <Container
-      className="d-flex justify-content-center pt-5"
+      className="d-flex justify-content-center pt-5 pb-5"
       fluid
     >
       <Row>
         <Col xs={12}>
-          <h1 className="text-center">Novo Usuario</h1>
+          <h1 className="text-center mb-5">Novo Usuario</h1>
         </Col>
         <Col xs={12}>
           <Form onSubmit={formik.handleSubmit}>
