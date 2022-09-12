@@ -5,31 +5,91 @@ import { FormikHelpers, useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
+  nome: yup
+    .string()
+    .required('Campo senha vazio'),
   email: yup
     .string()
-    .email('Email invalido')
-    .required('Campo email vazio'),
+    .required('Campo email vazio')
+    .email('Email invalido'),
   senha: yup
     .string()
+    .required('Campo senha vazio')
+    .min(8, 'Minimo de 8 caracteres'),
+  confirmarSenha: yup
+    .string()
+    .required("Campo confirmação de senha vazio")
     .min(8, 'Minimo de 8 caracteres')
-    .required('Campo senha vazio'),
+    .when("senha", {
+      is: (val: string) => (val && val.length > 0 ? true : false),
+      then: yup.string().oneOf(
+        [yup.ref("senha")],
+        "As senhas não são iguais!"
+      )
+    }),
+  cpf: yup
+    .string()
+    .required('Campo cpf vazio'),
+  rua: yup
+    .string()
+    .required('Campo rua vazio'),
+  numero: yup
+    .string()
+    .required('Campo numero vazio'),
+  complemento: yup
+    .string()
+    .required('Campo complemento vazio'),
+  bairro: yup
+    .string()
+    .required('Campo bairro vazio'),
+  cep: yup
+    .string()
+    .required('Campo cep vazio'),
+  cidade: yup
+    .string()
+    .required('Campo cidade vazio'),
+  estado: yup
+    .string()
+    .required('Campo estado vazio'),
 });
 
 interface DataTypes {
+  nome: string;
   email: string;
   senha: string;
+  confirmarSenha: string;
+  cpf: string;
+  telefone: string;
+  rua: string;
+  numero: string;
+  complemento: string;
+  bairro: string;
+  cep: string;
+  cidade: string;
+  estado: string;
 }
 
 const initialValues: DataTypes = {
+  nome: "",
   email: "",
-  senha: ""
+  senha: "",
+  confirmarSenha: "",
+  cpf: "",
+  telefone: "",
+  rua: "",
+  numero: "",
+  complemento: "",
+  bairro: "",
+  cep: "",
+  cidade: "",
+  estado: ""
 };
 
-export default function Login() {
+export default function NovoUsuario() {
   const navigate = useNavigate();
 
   const onSubmitForm = (values: DataTypes, formikHelpers: FormikHelpers<DataTypes>) => {
-    navigate("/homepage");
+    navigate("/");
   };
 
   const formik = useFormik({
@@ -98,8 +158,8 @@ export default function Login() {
             </ButtonGroup>
             <Link
               className="w-100 btn btn-success"
-              to="/novo_usuario"
-            >Novo usuario</Link>
+              to="/"
+            >Voltar</Link>
           </Form>
         </Col>
       </Row>
