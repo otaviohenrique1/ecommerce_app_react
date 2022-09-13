@@ -30,6 +30,9 @@ export default function ProdutoDados() {
         fluid
       >
         <Row>
+          <Col xs={12}>
+            <h1 className="text-center">Produto dados</h1>
+          </Col>
           <Col xs={12} className="d-flex justify-content-center mt-5">
             <ListGroupStyled>
               <ListGroup.Item>
