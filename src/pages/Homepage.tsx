@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Table, ButtonGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import ContainerApp from '../components/ContainerApp';
 import { listaProdutos, ListaProdutoTypes } from '../utils/lista_produtos';
 
 export default function Homepage() {
+  const navigate = useNavigate();
   const [data, setData] = useState<ListaProdutoTypes[]>([]);
 
   useEffect(() => {
@@ -24,6 +26,7 @@ export default function Homepage() {
             <Table striped bordered hover>
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>Nome</th>
                   <th>Preço</th>
                   <th className="text-end">#</th>
@@ -32,12 +35,14 @@ export default function Homepage() {
               <tbody>
                 {data.map((item, index) => (
                   <tr key={index}>
+                    <td>{item.codigo}</td>
                     <td>{item.nome}</td>
                     <td>{`R$ ${(item.preco).toFixed(2).replace(".", ",")}`}</td>
                     <td align="right">
                       <ButtonGroup>
                         <Button
                           variant="success"
+                          onClick={() => navigate(`/produto/${item.codigo}`)}
                         >Exibir</Button>
                         <Button
                           variant="primary"
