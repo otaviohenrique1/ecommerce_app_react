@@ -6,6 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { BiUserCircle } from "react-icons/bi";
+import { AiTwotoneShopping } from "react-icons/ai";
+import { FaShoppingCart } from "react-icons/fa";
+import styled from 'styled-components';
+
+const LogoAppbar = styled(Navbar.Brand)`
+  cursor: pointer;
+`;
 
 export default function Appbar() {
   const navigate = useNavigate();
@@ -14,13 +21,25 @@ export default function Appbar() {
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand>E-commerce App React</Navbar.Brand>
+        <LogoAppbar
+          onClick={() => navigate("/homepage")}
+          className="d-flex align-items-center"
+        >
+          <AiTwotoneShopping
+            size={22}
+          />
+          <span className="ms-1">E-commerce App React</span>
+        </LogoAppbar>
         <Navbar.Toggle aria-controls="navbar-nav-app" />
         <Navbar.Collapse id="navbar-nav-app">
           <Nav className="me-auto">
-            <Nav.Link>Homepage</Nav.Link>
-            <Nav.Link>Carrinho</Nav.Link>
-            <Nav.Link>Busca</Nav.Link>
+            <Nav.Link>
+              Homepage
+            </Nav.Link>
+            <Nav.Link className="d-flex align-items-center">
+              <span className="me-1">Carrinho</span>
+              <FaShoppingCart size={20} />
+            </Nav.Link>
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

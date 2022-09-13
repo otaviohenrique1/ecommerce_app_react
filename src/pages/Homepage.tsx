@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Row, Col, Button, Table } from 'react-bootstrap'
-import { useNavigate } from "react-router-dom";
-import Appbar from '../components/AppBar';
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Button, Table, ButtonGroup } from 'react-bootstrap';
+import ContainerApp from '../components/ContainerApp';
 import { listaProdutos, ListaProdutoTypes } from '../utils/lista_produtos';
 
 export default function Homepage() {
-  const navigate = useNavigate();
-
   const [data, setData] = useState<ListaProdutoTypes[]>([]);
 
   useEffect(() => {
     setData(listaProdutos);
-  }, [])
-
+  }, []);
 
   return (
-    <>
-      <Appbar />
+    <ContainerApp>
       <Container
-        className="d-flex justify-content-center pt-5"
+        className="d-flex justify-content-center pt-5 pb-3"
         fluid
       >
         <Row>
@@ -40,23 +35,22 @@ export default function Homepage() {
                     <td>{item.nome}</td>
                     <td>{`R$ ${(item.preco).toFixed(2).replace(".", ",")}`}</td>
                     <td align="right">
-                      <Button
-                        variant="primary"
-                      >Comprar</Button>
+                      <ButtonGroup>
+                        <Button
+                          variant="success"
+                        >Exibir</Button>
+                        <Button
+                          variant="primary"
+                        >Comprar</Button>
+                      </ButtonGroup>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </Table>
           </Col>
-          <Col xs={12} className="d-flex justify-content-center mt-2">
-            <Button
-              variant="primary"
-              onClick={() => navigate("/")}
-            >Sair</Button>
-          </Col>
         </Row>
       </Container>
-    </>
+    </ContainerApp>
   )
 }
