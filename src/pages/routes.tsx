@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Carrinho from './Carrinho';
 import Homepage from './Homepage';
 import Login from './Login';
 import NovoUsuario from './NovoUsuario';
@@ -14,6 +15,7 @@ export default function AppRoutes() {
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/novo_usuario" element={<NovoUsuario />} />
         <Route path="/produto/:id" element={<ProdutoDados />} />
+        <Route path="/carrinho" element={<Carrinho />} />
         <Route element={<Pagina404 />} path="*" />
       </Routes>
     </BrowserRouter>
