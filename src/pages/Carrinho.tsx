@@ -55,3 +55,33 @@ export default function Carrinho() {
     </ContainerApp>
   )
 }
+
+interface ItemTabelaProps {
+  // 
+}
+
+function ItemTabela(props: ItemTabelaProps) {
+  return (
+    <tr>
+      <td>1</td>
+      <td>GTX 1080</td>
+      <td>R$ 1500,00</td>
+      <td className="w-25">
+        <ButtonGroup
+          className="w-100"
+        >
+          <Button>+</Button>
+          <Form.Control
+            type="number"
+            value={1}
+            className="rounded-0 w-50 text-center"
+          />
+          <Button>-</Button>
+        </ButtonGroup>
+      </td>
+      <td align="right" className="w-25">
+        <Button variant="danger">Remover</Button>
+      </td>
+    </tr>
+  );
+}
